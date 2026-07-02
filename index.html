@@ -1,0 +1,646 @@
+Here is the HTML code for your dog training and boarding center website. It's a single, self-contained file with a dark blue and gold theme, featuring a public site and a hidden admin panel for content editing and WhatsApp billing.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Black Prados · Elite Dog Training & Boarding</title>
+  <!-- Font Awesome 6 for crisp icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+      background: #0a1120;
+      color: #e6e9f0;
+      line-height: 1.5;
+    }
+
+    /* Dark blue & gold theme */
+    :root {
+      --deep-blue: #0b1c2f;
+      --mid-blue: #132a42;
+      --dark-bg: #040b14;
+      --gold: #c9a03a;
+      --gold-light: #e0b854;
+      --gold-dim: #8b732b;
+      --text-light: #f0f2f5;
+      --text-muted: #b0c4de;
+      --card-bg: rgba(18, 34, 54, 0.8);
+      --border-gold: rgba(201, 160, 58, 0.4);
+      --glass: rgba(10, 25, 45, 0.75);
+      --shadow-gold: 0 8px 24px rgba(201, 160, 58, 0.2);
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 32px;
+      background: rgba(8, 18, 33, 0.9);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border-gold);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo i {
+      font-size: 2.2rem;
+      color: var(--gold-light);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: 0.3s;
+      padding: 8px 4px;
+      border-bottom: 2px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--gold-light);
+      border-bottom-color: var(--gold);
+    }
+
+    .admin-btn {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-left: 12px;
+      background: rgba(201, 160, 58, 0.08);
+    }
+    .admin-btn:hover {
+      background: var(--gold);
+      color: #0a1120;
+      border-color: var(--gold);
+    }
+
+    /* Hero section */
+    .hero {
+      background: linear-gradient(135deg, rgba(4, 11, 20, 0.85) 0%, rgba(11, 28, 47, 0.9) 100%), 
+                  url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 2px solid var(--gold);
+      position: relative;
+    }
+    .hero-content h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      text-shadow: 0 4px 18px black;
+      margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: #d9e2f0;
+    }
+    .gold-btn {
+      background: var(--gold);
+      border: none;
+      color: #0a1120;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 40px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: var(--shadow-gold);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .gold-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-3px);
+    }
+
+    /* Sections */
+    .section {
+      padding: 80px 0;
+    }
+    .section-title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 20px;
+      text-align: center;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: var(--gold);
+      margin: 12px auto;
+    }
+    .services-grid, .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-gold);
+      border-radius: 24px;
+      padding: 32px 20px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .card i {
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .card h3 {
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      margin-top: 30px;
+    }
+    .about-text {
+      flex: 1 1 400px;
+    }
+    .about-image {
+      flex: 1 1 400px;
+      border-radius: 28px;
+      border: 2px solid var(--gold);
+      overflow: hidden;
+    }
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Admin panel hidden by default */
+    .admin-panel {
+      background: #030c18;
+      border: 2px solid var(--gold);
+      border-radius: 32px;
+      padding: 30px;
+      margin: 40px auto;
+      max-width: 1000px;
+      display: none;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 35px rgba(201,160,58,0.25);
+    }
+    .admin-panel.active {
+      display: block;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .admin-header h2 {
+      color: var(--gold);
+    }
+    .close-admin {
+      background: none;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 1.5rem;
+      padding: 6px 16px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .admin-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .admin-col {
+      flex: 1 1 280px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: #0a1828;
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+    }
+    .bill-preview {
+      background: #0d1b2b;
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 20px;
+      border: 1px dashed var(--gold);
+    }
+    .whatsapp-sim {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 15px;
+      background: #0f2338;
+      padding: 10px 20px;
+      border-radius: 40px;
+    }
+    .whatsapp-sim i {
+      color: #25D366;
+      font-size: 2rem;
+    }
+    button {
+      background: var(--gold);
+      border: none;
+      color: #0a1120;
+      font-weight: bold;
+      padding: 12px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: var(--gold-light);
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid var(--gold);
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation with tabs -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-shield-dog"></i> BLACK PRADOS
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" class="active" data-section="home"><i class="fas fa-home"></i> Home</a>
+      <a href="#services" data-section="services"><i class="fas fa-bone"></i> Services</a>
+      <a href="#about" data-section="about"><i class="fas fa-users"></i> About Us</a>
+      <a href="#features" data-section="features"><i class="fas fa-star"></i> Features</a>
+      <button class="admin-btn" id="toggleAdminBtn"><i class="fas fa-user-shield"></i> Admin</button>
+    </div>
+  </nav>
+
+  <!-- Main content sections -->
+  <div id="home" class="section hero">
+    <div class="hero-content">
+      <h1>Elite Canine Care</h1>
+      <p id="heroText">World-class training & luxury boarding at Black Prados. Where discipline meets comfort.</p>
+      <a href="#services" class="gold-btn"><i class="fas fa-paw"></i> Explore Services</a>
+    </div>
+  </div>
+
+  <div id="services" class="section container">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-grid" id="servicesContainer">
+      <!-- dynamically filled but also static fallback -->
+    </div>
+  </div>
+
+  <div id="about" class="section container">
+    <h2 class="section-title">About Black Prados</h2>
+    <div class="about-content">
+      <div class="about-text" id="aboutTextContainer">
+        <p>Founded with passion, Black Prados offers premium dog training and boarding in a serene, secure environment. Our certified trainers use positive reinforcement.</p>
+        <p style="margin-top:16px;">We treat every dog like family. 15+ years of experience.</p>
+      </div>
+      <div class="about-image" id="aboutImageContainer">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Happy dogs at Black Prados" id="aboutImage">
+      </div>
+    </div>
+  </div>
+
+  <div id="features" class="section container">
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="features-grid" id="featuresContainer">
+      <!-- Features filled by JS -->
+    </div>
+  </div>
+
+  <!-- Admin Panel (hidden by default) -->
+  <div class="admin-panel container" id="adminPanel">
+    <div class="admin-header">
+      <h2><i class="fas fa-cogs"></i> Admin Dashboard</h2>
+      <button class="close-admin" id="closeAdminBtn"><i class="fas fa-times"></i></button>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+      <div style="flex:2; min-width: 280px;">
+        <h3 style="color:var(--gold); margin-bottom:16px;"><i class="fas fa-edit"></i> Edit Website Content</h3>
+        <div class="admin-row">
+          <div class="admin-col">
+            <label>Hero Text</label>
+            <input type="text" id="editHeroText" placeholder="Welcome message">
+          </div>
+          <div class="admin-col">
+            <label>About Description</label>
+            <textarea id="editAboutText" rows="3" placeholder="About us text..."></textarea>
+          </div>
+        </div>
+        <div class="admin-row">
+          <div class="admin-col">
+            <label>About Image URL</label>
+            <input type="text" id="editAboutImage" placeholder="https://...">
+          </div>
+          <div class="admin-col">
+            <label>Service 1 Title</label>
+            <input type="text" id="editService1" placeholder="Training">
+          </div>
+        </div>
+        <button id="applyContentChanges"><i class="fas fa-save"></i> Apply Changes</button>
+      </div>
+      <div style="flex:1.5; min-width: 260px; border-left: 1px solid var(--gold); padding-left: 25px;">
+        <h3 style="color:var(--gold);"><i class="fas fa-file-invoice"></i> Generate E-Bill</h3>
+        <div>
+          <label>Customer Name</label>
+          <input type="text" id="custName" placeholder="John Doe">
+          <label>Service</label>
+          <input type="text" id="custService" placeholder="Boarding 5 nights">
+          <label>Amount ($)</label>
+          <input type="number" id="custAmount" placeholder="250">
+          <button id="generateBillBtn" style="margin-top:12px;"><i class="fas fa-calculator"></i> Preview Bill</button>
+        </div>
+        <div class="bill-preview" id="billPreview" style="display:none;">
+          <strong style="color:var(--gold);">BLACK PRADOS INVOICE</strong>
+          <p id="billDetails"></p>
+          <div class="whatsapp-sim">
+            <i class="fab fa-whatsapp"></i>
+            <span id="whatsappMessage">Send via WhatsApp</span>
+            <button id="sendWhatsAppBtn" style="margin-left:auto;"><i class="fab fa-whatsapp"></i> Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 BLACK PRADOS · Premium Dog Training & Boarding · <i class="fas fa-phone-alt"></i> +1 (555) 234-5678</p>
+  </footer>
+
+  <script>
+    (function() {
+      // ----- Default data store (editable via admin) -----
+      const defaultContent = {
+        heroText: "World-class training & luxury boarding at Black Prados. Where discipline meets comfort.",
+        aboutText: "Founded with passion, Black Prados offers premium dog training and boarding in a serene, secure environment. Our certified trainers use positive reinforcement. We treat every dog like family. 15+ years of experience.",
+        aboutImage: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        services: [
+          { icon: "fa-solid fa-graduation-cap", title: "Obedience Training", desc: "Basic to advanced commands with positive reinforcement." },
+          { icon: "fa-solid fa-shield-cat", title: "Behavior Modification", desc: "Correcting aggression, anxiety & unwanted habits." },
+          { icon: "fa-solid fa-house", title: "Luxury Boarding", desc: "Climate-controlled suites, play yards & 24/7 care." },
+          { icon: "fa-solid fa-paw", title: "Puppy Program", desc: "Socialization & foundational skills for young dogs." }
+        ],
+        features: [
+          { icon: "fa-solid fa-certificate", title: "Certified Trainers", desc: "Accredited professionals with canine expertise." },
+          { icon: "fa-solid fa-clock", title: "24/7 Monitoring", desc: "Live cameras & overnight staff for safety." },
+          { icon: "fa-solid fa-leaf", title: "5-Acre Facility", desc: "Outdoor agility fields & nature trails." },
+          { icon: "fa-solid fa-hand-sparkles", title: "Spa & Grooming", desc: "Premium baths, brushing & nail care included." }
+        ]
+      };
+
+      // Load from localStorage or use defaults
+      let siteData = JSON.parse(localStorage.getItem('blackPradosContent')) || JSON.parse(JSON.stringify(defaultContent));
+
+      // Save helper
+      function persistData() {
+        localStorage.setItem('blackPradosContent', JSON.stringify(siteData));
+      }
+
+      // ----- Render functions -----
+      function renderServices() {
+        const container = document.getElementById('servicesContainer');
+        if (!container) return;
+        container.innerHTML = siteData.services.map(s => `
+          <div class="card">
+            <i class="${s.icon}"></i>
+            <h3>${s.title}</h3>
+            <p>${s.desc}</p>
+          </div>
+        `).join('');
+      }
+
+      function renderFeatures() {
+        const container = document.getElementById('featuresContainer');
+        if (!container) return;
+        container.innerHTML = siteData.features.map(f => `
+          <div class="card">
+            <i class="${f.icon}"></i>
+            <h3>${f.title}</h3>
+            <p>${f.desc}</p>
+          </div>
+        `).join('');
+      }
+
+      function renderAbout() {
+        document.getElementById('aboutTextContainer').innerHTML = `<p>${siteData.aboutText}</p>`;
+        document.getElementById('aboutImage').src = siteData.aboutImage;
+      }
+
+      function renderHero() {
+        const heroEl = document.getElementById('heroText');
+        if (heroEl) heroEl.textContent = siteData.heroText;
+      }
+
+      function refreshAllUI() {
+        renderHero();
+        renderServices();
+        renderFeatures();
+        renderAbout();
+      }
+
+      // ----- Admin panel logic -----
+      const adminPanel = document.getElementById('adminPanel');
+      const toggleAdminBtn = document.getElementById('toggleAdminBtn');
+      const closeAdminBtn = document.getElementById('closeAdminBtn');
+
+      function openAdmin() {
+        adminPanel.classList.add('active');
+        // populate fields with current data
+        document.getElementById('editHeroText').value = siteData.heroText;
+        document.getElementById('editAboutText').value = siteData.aboutText;
+        document.getElementById('editAboutImage').value = siteData.aboutImage;
+        document.getElementById('editService1').value = siteData.services[0]?.title || '';
+        // could add more fields, but demonstrates editing
+        toggleAdminBtn.style.display = 'none';
+      }
+
+      function closeAdmin() {
+        adminPanel.classList.remove('active');
+        toggleAdminBtn.style.display = 'inline-block';
+      }
+
+      toggleAdminBtn.addEventListener('click', openAdmin);
+      closeAdminBtn.addEventListener('click', closeAdmin);
+
+      // Apply content changes
+      document.getElementById('applyContentChanges').addEventListener('click', function() {
+        const newHero = document.getElementById('editHeroText').value.trim();
+        const newAbout = document.getElementById('editAboutText').value.trim();
+        const newAboutImg = document.getElementById('editAboutImage').value.trim();
+        const newService1Title = document.getElementById('editService1').value.trim();
+
+        if (newHero) siteData.heroText = newHero;
+        if (newAbout) siteData.aboutText = newAbout;
+        if (newAboutImg) siteData.aboutImage = newAboutImg;
+        if (newService1Title && siteData.services.length > 0) {
+          siteData.services[0].title = newService1Title;
+        }
+        persistData();
+        refreshAllUI();
+        alert('Website content updated successfully!');
+        closeAdmin(); // optional auto close
+      });
+
+      // ----- E-Bill & WhatsApp feature (no direct payment) -----
+      const generateBtn = document.getElementById('generateBillBtn');
+      const billPreviewDiv = document.getElementById('billPreview');
+      const billDetails = document.getElementById('billDetails');
+      const sendWhatsAppBtn = document.getElementById('sendWhatsAppBtn');
+      let currentBill = { name: '', service: '', amount: '' };
+
+      generateBtn.addEventListener('click', function() {
+        const name = document.getElementById('custName').value.trim();
+        const service = document.getElementById('custService').value.trim();
+        const amount = document.getElementById('custAmount').value.trim();
+        if (!name || !service || !amount) {
+          alert('Please fill all bill fields.');
+          return;
+        }
+        currentBill = { name, service, amount };
+        billDetails.innerHTML = `🧾 <strong>${name}</strong><br>📌 ${service}<br>💰 $${amount}`;
+        billPreviewDiv.style.display = 'block';
+      });
+
+      sendWhatsAppBtn.addEventListener('click', function() {
+        if (!currentBill.name || !currentBill.service || !currentBill.amount) {
+          alert('Generate a bill first.');
+          return;
+        }
+        const phone = "15551234567"; // placeholder; in real use, admin would input or use business number
+        const message = `Hello ${currentBill.name}, your invoice from BLACK PRADOS:\nService: ${currentBill.service}\nAmount: $${currentBill.amount}\nThank you! 🐾`;
+        const encoded = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${phone}?text=${encoded}`;
+        window.open(whatsappUrl, '_blank');
+      });
+
+      // ----- Navigation tab switching (smooth) -----
+      const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+      function setActiveLink(sectionId) {
+        navLinks.forEach(link => {
+          const dataSec = link.getAttribute('data-section');
+          if (dataSec === sectionId) link.classList.add('active');
+          else link.classList.remove('active');
+        });
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const sectionId = this.getAttribute('data-section');
+          const target = document.getElementById(sectionId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+            setActiveLink(sectionId);
+          }
+        });
+      });
+
+      // Observe scroll to update active tab (basic)
+      window.addEventListener('scroll', function() {
+        const sections = ['home','services','about','features'];
+        let current = 'home';
+        sections.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 150 && rect.bottom >= 150) {
+              current = id;
+            }
+          }
+        });
+        setActiveLink(current);
+      });
+
+      // Initial render
+      refreshAllUI();
+
+      // Ensure admin button visible if panel closed programmatically
+      if (!adminPanel.classList.contains('active')) {
+        toggleAdminBtn.style.display = 'inline-block';
+      }
+
+      // Additional corner features: service editing could be extended, but admin panel covers content.
+      // Also ensure bill section resets appropriately.
+    })();
+  </script>
+</body>
+</html>
+```
