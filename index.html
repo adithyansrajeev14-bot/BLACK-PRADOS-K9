@@ -1,646 +1,662 @@
-Here is the HTML code for your dog training and boarding center website. It's a single, self-contained file with a dark blue and gold theme, featuring a public site and a hidden admin panel for content editing and WhatsApp billing.
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>Black Prados · Elite Dog Training & Boarding</title>
-  <!-- Font Awesome 6 for crisp icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Prados K9 | Wild to Wise</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
     }
 
     body {
-      font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
-      background: #0a1120;
-      color: #e6e9f0;
+      background-color: #0b0a0a;
+      color: #f0e6d0;
       line-height: 1.5;
     }
 
-    /* Dark blue & gold theme */
-    :root {
-      --deep-blue: #0b1c2f;
-      --mid-blue: #132a42;
-      --dark-bg: #040b14;
-      --gold: #c9a03a;
-      --gold-light: #e0b854;
-      --gold-dim: #8b732b;
-      --text-light: #f0f2f5;
-      --text-muted: #b0c4de;
-      --card-bg: rgba(18, 34, 54, 0.8);
-      --border-gold: rgba(201, 160, 58, 0.4);
-      --glass: rgba(10, 25, 45, 0.75);
-      --shadow-gold: 0 8px 24px rgba(201, 160, 58, 0.2);
-    }
-
     .container {
-      max-width: 1300px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 1.5rem 2rem;
     }
 
-    /* Navigation */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 32px;
-      background: rgba(8, 18, 33, 0.9);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border-gold);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      flex-wrap: wrap;
+    /* ----- BURNED ORANGE & DARK THEME ----- */
+    :root {
+      --burnt: #e07c2c;
+      --burnt-glow: #b85f1f;
+      --dark-card: #1a1614;
+      --dark-surface: #241f1b;
+      --gold: #d9b382;
+      --light-text: #f5efe8;
     }
 
-    .logo {
-      font-size: 1.9rem;
+    h1, h2, h3, h4 {
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      text-transform: uppercase;
+      color: var(--burnt);
+      border-left: 6px solid var(--burnt);
+      padding-left: 1rem;
+      margin-bottom: 2rem;
+      font-weight: 800;
+    }
+
+    .section-title span {
+      color: #fff;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--burnt);
+      color: #0b0a0a;
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: 0.2s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(224, 124, 44, 0.3);
+    }
+
+    .btn:hover {
+      background: #c96d1f;
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px rgba(224, 124, 44, 0.5);
+    }
+
+    /* ----- HERO / HEADER ----- */
+    .hero {
+      background: linear-gradient(145deg, #0f0c0a 0%, #1e1814 100%);
+      padding: 2rem 0 1rem;
+      border-bottom: 2px solid #3a2a1e;
+    }
+
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-brand {
+      flex: 1 1 280px;
+    }
+
+    .hero-brand .logo-text {
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #fff;
+      text-shadow: 0 0 15px rgba(224,124,44,0.3);
+    }
+
+    .hero-brand .logo-text span {
+      color: var(--burnt);
+    }
+
+    .hero-brand .tagline {
+      font-size: 1.4rem;
+      font-weight: 300;
       color: var(--gold);
+      margin: 0.5rem 0 1rem;
+      letter-spacing: 2px;
+    }
+
+    .hero-brand .promise {
+      font-size: 1.1rem;
+      background: #1f1813;
+      padding: 0.8rem 1.2rem;
+      border-radius: 60px;
+      display: inline-block;
+      border: 1px solid #3f2e22;
+    }
+
+    .hero-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2rem;
+      background: #1a1410;
+      padding: 1.2rem 2rem;
+      border-radius: 80px;
+      border: 1px solid #3f2b1c;
+    }
+
+    .hero-contacts a {
+      color: #f0e6d0;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .logo i {
-      font-size: 2.2rem;
-      color: var(--gold-light);
+
+    .hero-contacts i {
+      color: var(--burnt);
     }
 
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: 0.3s;
-      padding: 8px 4px;
-      border-bottom: 2px solid transparent;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--gold-light);
-      border-bottom-color: var(--gold);
+    .hero-location {
+      font-size: 0.95rem;
+      color: #b9a28c;
+      margin-top: 0.5rem;
     }
 
-    .admin-btn {
-      background: transparent;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      padding: 8px 18px;
-      border-radius: 30px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin-left: 12px;
-      background: rgba(201, 160, 58, 0.08);
-    }
-    .admin-btn:hover {
-      background: var(--gold);
-      color: #0a1120;
-      border-color: var(--gold);
+    .hero-location i {
+      color: var(--burnt);
+      margin-right: 6px;
     }
 
-    /* Hero section */
-    .hero {
-      background: linear-gradient(135deg, rgba(4, 11, 20, 0.85) 0%, rgba(11, 28, 47, 0.9) 100%), 
-                  url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-bottom: 2px solid var(--gold);
-      position: relative;
-    }
-    .hero-content h1 {
-      font-size: 3.8rem;
-      font-weight: 800;
-      color: var(--gold-light);
-      text-shadow: 0 4px 18px black;
-      margin-bottom: 20px;
-    }
-    .hero-content p {
-      font-size: 1.4rem;
-      max-width: 700px;
-      margin: 0 auto 30px;
-      color: #d9e2f0;
-    }
-    .gold-btn {
-      background: var(--gold);
-      border: none;
-      color: #0a1120;
-      font-weight: 700;
-      padding: 14px 36px;
-      border-radius: 40px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: var(--shadow-gold);
-      text-decoration: none;
-      display: inline-block;
-    }
-    .gold-btn:hover {
-      background: var(--gold-light);
-      transform: translateY(-3px);
+    .hero-badge {
+      flex: 0 0 auto;
     }
 
-    /* Sections */
-    .section {
-      padding: 80px 0;
-    }
-    .section-title {
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 20px;
-      text-align: center;
-      position: relative;
-    }
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 3px;
-      background: var(--gold);
-      margin: 12px auto;
-    }
-    .services-grid, .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 32px;
-      margin-top: 40px;
-    }
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--border-gold);
-      border-radius: 24px;
-      padding: 32px 20px;
-      text-align: center;
-      transition: 0.3s;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    }
-    .card i {
-      font-size: 2.8rem;
-      color: var(--gold);
-      margin-bottom: 18px;
-    }
-    .card h3 {
-      color: var(--gold-light);
-      margin-bottom: 12px;
-    }
-
-    .about-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
-      margin-top: 30px;
-    }
-    .about-text {
-      flex: 1 1 400px;
-    }
-    .about-image {
-      flex: 1 1 400px;
-      border-radius: 28px;
-      border: 2px solid var(--gold);
-      overflow: hidden;
-    }
-    .about-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* Admin panel hidden by default */
-    .admin-panel {
-      background: #030c18;
-      border: 2px solid var(--gold);
-      border-radius: 32px;
-      padding: 30px;
-      margin: 40px auto;
-      max-width: 1000px;
-      display: none;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 0 35px rgba(201,160,58,0.25);
-    }
-    .admin-panel.active {
-      display: block;
-    }
-    .admin-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 28px;
-    }
-    .admin-header h2 {
-      color: var(--gold);
-    }
-    .close-admin {
-      background: none;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-size: 1.5rem;
-      padding: 6px 16px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    .admin-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      margin-bottom: 28px;
-    }
-    .admin-col {
-      flex: 1 1 280px;
-    }
-    label {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--gold-light);
-      font-weight: 500;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 12px 16px;
-      background: #0a1828;
-      border: 1px solid var(--border-gold);
-      border-radius: 16px;
-      color: white;
-      font-size: 1rem;
-      outline: none;
-    }
-    .bill-preview {
-      background: #0d1b2b;
-      padding: 20px;
+    .hero-badge img {
+      max-width: 120px;
       border-radius: 20px;
-      margin-top: 20px;
-      border: 1px dashed var(--gold);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+      border: 2px solid #3f2a1b;
     }
-    .whatsapp-sim {
+
+    /* ----- ZERO TO HERO SECTION (with dummy "image" representation) ----- */
+    .zero-hero {
+      background: #0f0c0a;
+      padding: 2.5rem 0;
+    }
+
+    .zero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: #16110e;
+      border-radius: 40px;
+      padding: 2rem;
+      border: 1px solid #362619;
+    }
+
+    .zero-left {
+      flex: 2 1 300px;
+    }
+
+    .zero-left h2 {
+      font-size: 3.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .zero-left h2 i {
+      color: var(--burnt);
+      font-style: normal;
+    }
+
+    .zero-left .highlight {
+      color: var(--burnt);
+      font-size: 3.8rem;
+    }
+
+    .zero-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin: 1.8rem 0;
+    }
+
+    .zero-feat {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-top: 15px;
-      background: #0f2338;
-      padding: 10px 20px;
+      background: #1f1813;
+      padding: 0.5rem 1.5rem 0.5rem 1rem;
       border-radius: 40px;
-    }
-    .whatsapp-sim i {
-      color: #25D366;
-      font-size: 2rem;
-    }
-    button {
-      background: var(--gold);
-      border: none;
-      color: #0a1120;
-      font-weight: bold;
-      padding: 12px 24px;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    button:hover {
-      background: var(--gold-light);
-    }
-    footer {
-      text-align: center;
-      padding: 30px;
-      border-top: 1px solid var(--gold);
-      color: var(--text-muted);
+      border: 1px solid #3f2c1d;
     }
 
+    .zero-feat i {
+      font-size: 2.2rem;
+      color: var(--burnt);
+    }
+
+    .zero-right {
+      flex: 1 1 220px;
+      background: #1f1813;
+      border-radius: 30px;
+      padding: 1.5rem 1.8rem;
+      border: 1px solid #3f2a1b;
+      box-shadow: 0 8px 0 #0b0806;
+    }
+
+    .zero-right h3 {
+      color: var(--burnt);
+      font-size: 1.8rem;
+      border-bottom: 2px solid #3f2a1b;
+      padding-bottom: 0.5rem;
+    }
+
+    .zero-right ul {
+      list-style: none;
+      margin: 0.5rem 0;
+    }
+
+    .zero-right li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #2d2119;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .zero-right li i {
+      color: var(--burnt);
+      width: 24px;
+    }
+
+    .zero-bottom {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      background: #1a1410;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      border: 1px solid #3a281d;
+    }
+
+    .zero-bottom i {
+      color: var(--burnt);
+      font-size: 1.4rem;
+    }
+
+    /* ----- SERVICES (GROOMING, TRAINING, BOARDING) ----- */
+    .services {
+      background: #0d0a08;
+      padding: 3rem 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: #18130f;
+      border-radius: 30px;
+      padding: 2rem 1.5rem;
+      border: 1px solid #33261a;
+      transition: all 0.2s;
+      box-shadow: 0 6px 0 #0b0806;
+    }
+
+    .service-card:hover {
+      border-color: var(--burnt);
+      transform: translateY(-4px);
+    }
+
+    .service-card h3 {
+      font-size: 2rem;
+      color: var(--burnt);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .service-card h3 i {
+      font-size: 2rem;
+    }
+
+    .service-list {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .service-list li {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #2a1f18;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .service-list i {
+      color: var(--burnt);
+      width: 20px;
+      font-size: 0.9rem;
+    }
+
+    .service-sub {
+      background: #1f1712;
+      padding: 0.8rem;
+      border-radius: 60px;
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 600;
+      border: 1px solid #3f2a1b;
+    }
+
+    .service-sub i {
+      color: var(--burnt);
+      margin-right: 6px;
+    }
+
+    /* ----- WHY CHOOSE (EXPERTS, SAFE, UPDATES) ----- */
+    .why-section {
+      background: #100d0a;
+      padding: 3rem 0;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .why-item {
+      background: #1a1410;
+      border-radius: 30px;
+      padding: 1.8rem 1.2rem;
+      text-align: center;
+      border: 1px solid #33261a;
+    }
+
+    .why-item i {
+      font-size: 3rem;
+      color: var(--burnt);
+      background: #241d18;
+      padding: 0.8rem;
+      border-radius: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .why-item h4 {
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    .why-item p {
+      color: #b9a28c;
+      font-size: 0.95rem;
+    }
+
+    /* ----- FOOTER / CONTACT ----- */
+    .footer {
+      background: #0a0807;
+      padding: 2rem 0;
+      border-top: 2px solid #2a1e16;
+      margin-top: 1rem;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .footer-brand {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+
+    .footer-brand span {
+      color: var(--burnt);
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+    }
+
+    .footer-contact a {
+      color: #f0e6d0;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-contact i {
+      color: var(--burnt);
+      margin-right: 8px;
+    }
+
+    .footer-address {
+      color: #b9a28c;
+    }
+
+    .footer-address i {
+      color: var(--burnt);
+      margin-right: 6px;
+    }
+
+    .footer .social i {
+      font-size: 1.6rem;
+      color: #b9a28c;
+      margin: 0 8px;
+      transition: 0.2s;
+    }
+
+    .footer .social i:hover {
+      color: var(--burnt);
+    }
+
+    /* responsive touches */
     @media (max-width: 700px) {
-      .navbar {
+      .hero-grid, .zero-grid {
         flex-direction: column;
-        gap: 15px;
+        text-align: center;
       }
-      .hero-content h1 {
+      .hero-contacts {
+        justify-content: center;
+      }
+      .zero-left h2 {
         font-size: 2.5rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .zero-bottom {
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation with tabs -->
-  <nav class="navbar">
-    <div class="logo">
-      <i class="fas fa-shield-dog"></i> BLACK PRADOS
-    </div>
-    <div class="nav-links" id="navLinks">
-      <a href="#home" class="active" data-section="home"><i class="fas fa-home"></i> Home</a>
-      <a href="#services" data-section="services"><i class="fas fa-bone"></i> Services</a>
-      <a href="#about" data-section="about"><i class="fas fa-users"></i> About Us</a>
-      <a href="#features" data-section="features"><i class="fas fa-star"></i> Features</a>
-      <button class="admin-btn" id="toggleAdminBtn"><i class="fas fa-user-shield"></i> Admin</button>
-    </div>
-  </nav>
 
-  <!-- Main content sections -->
-  <div id="home" class="section hero">
-    <div class="hero-content">
-      <h1>Elite Canine Care</h1>
-      <p id="heroText">World-class training & luxury boarding at Black Prados. Where discipline meets comfort.</p>
-      <a href="#services" class="gold-btn"><i class="fas fa-paw"></i> Explore Services</a>
-    </div>
-  </div>
-
-  <div id="services" class="section container">
-    <h2 class="section-title">Our Services</h2>
-    <div class="services-grid" id="servicesContainer">
-      <!-- dynamically filled but also static fallback -->
-    </div>
-  </div>
-
-  <div id="about" class="section container">
-    <h2 class="section-title">About Black Prados</h2>
-    <div class="about-content">
-      <div class="about-text" id="aboutTextContainer">
-        <p>Founded with passion, Black Prados offers premium dog training and boarding in a serene, secure environment. Our certified trainers use positive reinforcement.</p>
-        <p style="margin-top:16px;">We treat every dog like family. 15+ years of experience.</p>
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="hero-brand">
+        <div class="logo-text">BLACK <span>PRADOS</span></div>
+        <div class="tagline">WILD TO WISE</div>
+        <div class="promise">
+          <i class="fas fa-paw" style="color:var(--burnt);"></i> Trust • Respect • Discipline
+        </div>
+        <div style="margin-top: 1rem; font-size: 1.2rem; font-weight:300;">
+          We don't just train dogs, we build lifelong bonds.
+        </div>
       </div>
-      <div class="about-image" id="aboutImageContainer">
-        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Happy dogs at Black Prados" id="aboutImage">
+
+      <div class="hero-contacts">
+        <a href="tel:8075197681"><i class="fas fa-phone-alt"></i> 8075197681</a>
+        <a href="tel:7356790442"><i class="fas fa-phone-alt"></i> 7356790442</a>
+        <a href="https://www.blackprados.in" target="_blank"><i class="fas fa-globe"></i> blackprados.in</a>
+      </div>
+
+      <div class="hero-badge">
+        <!-- emblem / shield representation -->
+        <div style="background: #1a1410; border-radius: 50%; padding: 0.3rem; border: 3px solid var(--burnt);">
+          <i class="fas fa-shield-halved" style="font-size: 5rem; color: var(--burnt); padding: 0.2rem;"></i>
+        </div>
+        <div style="font-size: 0.8rem; text-align: center; margin-top: 4px;">K9 • Wild to Wise</div>
       </div>
     </div>
-  </div>
-
-  <div id="features" class="section container">
-    <h2 class="section-title">Why Choose Us</h2>
-    <div class="features-grid" id="featuresContainer">
-      <!-- Features filled by JS -->
+    <div class="container hero-location">
+      <i class="fas fa-map-pin"></i> BLACK PRADOS Canine Training Center, Kalavoor, Alappuzha, Kerala, India
     </div>
-  </div>
+  </header>
 
-  <!-- Admin Panel (hidden by default) -->
-  <div class="admin-panel container" id="adminPanel">
-    <div class="admin-header">
-      <h2><i class="fas fa-cogs"></i> Admin Dashboard</h2>
-      <button class="close-admin" id="closeAdminBtn"><i class="fas fa-times"></i></button>
-    </div>
-    <div style="display: flex; flex-wrap: wrap; gap: 30px;">
-      <div style="flex:2; min-width: 280px;">
-        <h3 style="color:var(--gold); margin-bottom:16px;"><i class="fas fa-edit"></i> Edit Website Content</h3>
-        <div class="admin-row">
-          <div class="admin-col">
-            <label>Hero Text</label>
-            <input type="text" id="editHeroText" placeholder="Welcome message">
+  <!-- ===== ZERO TO HERO + WHY CHOOSE ===== -->
+  <section class="zero-hero">
+    <div class="container">
+      <div class="zero-grid">
+        <div class="zero-left">
+          <h2><span class="highlight">ZERO</span> TO <span class="highlight">HERO</span></h2>
+          <p style="font-size: 1.4rem; font-weight: 300; color: #cfb9a6;">We make your dog <strong style="color:var(--burnt);">WILD TO WISE</strong></p>
+          <div class="zero-features">
+            <div class="zero-feat"><i class="fas fa-building"></i> Spacious kennels</div>
+            <div class="zero-feat"><i class="fas fa-video"></i> 24/7 surveillance</div>
+            <div class="zero-feat"><i class="fas fa-utensils"></i> Nutritious food</div>
           </div>
-          <div class="admin-col">
-            <label>About Description</label>
-            <textarea id="editAboutText" rows="3" placeholder="About us text..."></textarea>
+          <div style="margin: 1.2rem 0; background: #1f1813; padding: 1rem; border-radius: 40px; border: 1px solid #3f2a1b;">
+            <i class="fas fa-paw" style="color:var(--burnt);"></i> <strong>DISCIPLINE. LOYALTY. PROTECTION.</strong> <br> Built for a better bond.
           </div>
         </div>
-        <div class="admin-row">
-          <div class="admin-col">
-            <label>About Image URL</label>
-            <input type="text" id="editAboutImage" placeholder="https://...">
-          </div>
-          <div class="admin-col">
-            <label>Service 1 Title</label>
-            <input type="text" id="editService1" placeholder="Training">
-          </div>
-        </div>
-        <button id="applyContentChanges"><i class="fas fa-save"></i> Apply Changes</button>
-      </div>
-      <div style="flex:1.5; min-width: 260px; border-left: 1px solid var(--gold); padding-left: 25px;">
-        <h3 style="color:var(--gold);"><i class="fas fa-file-invoice"></i> Generate E-Bill</h3>
-        <div>
-          <label>Customer Name</label>
-          <input type="text" id="custName" placeholder="John Doe">
-          <label>Service</label>
-          <input type="text" id="custService" placeholder="Boarding 5 nights">
-          <label>Amount ($)</label>
-          <input type="number" id="custAmount" placeholder="250">
-          <button id="generateBillBtn" style="margin-top:12px;"><i class="fas fa-calculator"></i> Preview Bill</button>
-        </div>
-        <div class="bill-preview" id="billPreview" style="display:none;">
-          <strong style="color:var(--gold);">BLACK PRADOS INVOICE</strong>
-          <p id="billDetails"></p>
-          <div class="whatsapp-sim">
-            <i class="fab fa-whatsapp"></i>
-            <span id="whatsappMessage">Send via WhatsApp</span>
-            <button id="sendWhatsAppBtn" style="margin-left:auto;"><i class="fab fa-whatsapp"></i> Send</button>
+
+        <!-- "Why choose Black Prados" right side -->
+        <div class="zero-right">
+          <h3>WHY CHOOSE</h3>
+          <h4 style="color: #fff; font-size: 1.6rem; margin-bottom: 0.2rem;">BLACK PRADOS?</h4>
+          <ul>
+            <li><i class="fas fa-user-graduate"></i> Expert trainers</li>
+            <li><i class="fas fa-award"></i> Proven results</li>
+            <li><i class="fas fa-heart"></i> Safe & caring</li>
+            <li><i class="fas fa-camera"></i> Regular updates</li>
+            <li><i class="fas fa-calendar-check"></i> Flexible programs</li>
+          </ul>
+          <div style="margin-top: 1rem; font-size: 0.9rem; background: #241d18; padding: 0.5rem; border-radius: 40px;">
+            <i class="fas fa-check-circle" style="color:var(--burnt);"></i> Customized training & care
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <footer>
-    <p>© 2025 BLACK PRADOS · Premium Dog Training & Boarding · <i class="fas fa-phone-alt"></i> +1 (555) 234-5678</p>
+      <div class="zero-bottom">
+        <span><i class="fas fa-paw"></i> EXPERIENCED • CERTIFIED • PASSIONATE</span>
+        <span><i class="fas fa-shield-dog"></i> Hundreds of successful transformations</span>
+        <span><i class="fas fa-camera-retro"></i> Photo & video updates</span>
+        <span><i class="fas fa-calendar-alt"></i> Custom programs</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES: GROOMING • TRAINING • BOARDING & DAY CARE ===== -->
+  <section class="services">
+    <div class="container">
+      <h2 class="section-title"><span>OUR</span> SERVICES</h2>
+      <div class="services-grid">
+
+        <!-- GROOMING -->
+        <div class="service-card">
+          <h3><i class="fas fa-scissors"></i> GROOMING</h3>
+          <ul class="service-list">
+            <li><i class="fas fa-check"></i> Bathing & medicated bath</li>
+            <li><i class="fas fa-check"></i> Brushing & hair trimming</li>
+            <li><i class="fas fa-check"></i> Nail clipping & ear cleaning</li>
+            <li><i class="fas fa-check"></i> Coat conditioning</li>
+            <li><i class="fas fa-check"></i> De-shedding & flea care</li>
+            <li><i class="fas fa-check"></i> Tick & hygiene care</li>
+          </ul>
+          <div class="service-sub"><i class="fas fa-paw"></i> Healthy coat. Happy dog.</div>
+        </div>
+
+        <!-- CANINE TRAINING -->
+        <div class="service-card">
+          <h3><i class="fas fa-graduation-cap"></i> CANINE TRAINING</h3>
+          <ul class="service-list">
+            <li><i class="fas fa-check"></i> Puppy foundation</li>
+            <li><i class="fas fa-check"></i> Basic / Advanced obedience</li>
+            <li><i class="fas fa-check"></i> Behavioral correction</li>
+            <li><i class="fas fa-check"></i> Leash & recall training</li>
+            <li><i class="fas fa-check"></i> Confidence & socialization</li>
+            <li><i class="fas fa-check"></i> Show / Agility / Protection</li>
+            <li><i class="fas fa-check"></i> Off-leash & trick training</li>
+          </ul>
+          <div class="service-sub"><i class="fas fa-trophy"></i> From first lesson to forever loyalty</div>
+          <div style="margin-top: 0.6rem; font-size: 0.8rem; color: #c0a78e; display:flex; gap: 8px; flex-wrap: wrap; justify-content:center;">
+            <span><i class="fas fa-bolt" style="color:var(--burnt);"></i> Better discipline</span>
+            <span><i class="fas fa-brain" style="color:var(--burnt);"></i> Improved behavior</span>
+            <span><i class="fas fa-handshake" style="color:var(--burnt);"></i> Stronger bond</span>
+            <span><i class="fas fa-heart-circle-check" style="color:var(--burnt);"></i> Reduced anxiety</span>
+          </div>
+        </div>
+
+        <!-- BOARDING & DAY CARE -->
+        <div class="service-card">
+          <h3><i class="fas fa-house-dog"></i> BOARDING & DAY CARE</h3>
+          <div style="display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.6rem;">
+            <span style="background: #2a1e16; padding: 0.2rem 1rem; border-radius: 40px; font-weight: 600;"><i class="fas fa-bed" style="color:var(--burnt);"></i> Boarding</span>
+            <span style="background: #2a1e16; padding: 0.2rem 1rem; border-radius: 40px; font-weight: 600;"><i class="fas fa-sun" style="color:var(--burnt);"></i> Day care</span>
+          </div>
+          <ul class="service-list">
+            <li><i class="fas fa-check"></i> Comfortable accommodation</li>
+            <li><i class="fas fa-check"></i> Spacious & clean kennels</li>
+            <li><i class="fas fa-check"></i> Daily walks & playtime</li>
+            <li><i class="fas fa-check"></i> Scheduled feeding & health monitoring</li>
+            <li><i class="fas fa-check"></i> 24/7 supervision & CCTV</li>
+            <li><i class="fas fa-check"></i> Socialization & enrichment games</li>
+            <li><i class="fas fa-check"></i> Reduced separation anxiety</li>
+          </ul>
+          <div class="service-sub"><i class="fas fa-dog"></i> A safe place to stay. A better place to play.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY CHOOSE (expanded) & extra features ===== -->
+  <section class="why-section">
+    <div class="container">
+      <h2 class="section-title">WHY <span>BLACK PRADOS</span></h2>
+      <div class="why-grid">
+        <div class="why-item"><i class="fas fa-user-tie"></i><h4>Expert Trainers</h4><p>Experienced, certified & passionate about dogs.</p></div>
+        <div class="why-item"><i class="fas fa-medal"></i><h4>Proven Results</h4><p>Hundreds of successful transformations.</p></div>
+        <div class="why-item"><i class="fas fa-heart-pulse"></i><h4>Safe & Caring</h4><p>Your dog's safety, comfort & well-being come first.</p></div>
+        <div class="why-item"><i class="fas fa-camera"></i><h4>Regular Updates</h4><p>Photo & video updates so you never miss a moment.</p></div>
+        <div class="why-item"><i class="fas fa-calendar-week"></i><h4>Flexible Programs</h4><p>Customized training & care as per your dog's needs.</p></div>
+      </div>
+      <div style="margin-top: 2rem; text-align: center; background: #1a1410; padding: 1rem; border-radius: 60px; border: 1px solid #362619;">
+        <i class="fas fa-shield-halved" style="color:var(--burnt); font-size: 1.8rem;"></i> 
+        <span style="font-weight: 600;">DISCIPLINE. LOYALTY. PROTECTION. — Built for a better bond.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">BLACK <span>PRADOS</span> K9</div>
+      <div class="footer-contact">
+        <a href="tel:8075197681"><i class="fas fa-phone"></i> 8075197681</a>
+        <a href="tel:7356790442"><i class="fas fa-phone"></i> 7356790442</a>
+        <a href="https://www.blackprados.in" target="_blank"><i class="fas fa-globe"></i> blackprados.in</a>
+      </div>
+      <div class="footer-address">
+        <i class="fas fa-location-dot"></i> Kalavoor, Alappuzha, Kerala, India
+      </div>
+      <div class="social">
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-youtube"></i>
+      </div>
+    </div>
+    <div class="container" style="text-align: center; margin-top: 1.5rem; border-top: 1px solid #231b16; padding-top: 1.2rem; color: #7a6859; font-size: 0.9rem;">
+      <i class="fas fa-paw" style="color:var(--burnt);"></i> Wild to Wise — Training champions, building companions.
+    </div>
   </footer>
 
-  <script>
-    (function() {
-      // ----- Default data store (editable via admin) -----
-      const defaultContent = {
-        heroText: "World-class training & luxury boarding at Black Prados. Where discipline meets comfort.",
-        aboutText: "Founded with passion, Black Prados offers premium dog training and boarding in a serene, secure environment. Our certified trainers use positive reinforcement. We treat every dog like family. 15+ years of experience.",
-        aboutImage: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        services: [
-          { icon: "fa-solid fa-graduation-cap", title: "Obedience Training", desc: "Basic to advanced commands with positive reinforcement." },
-          { icon: "fa-solid fa-shield-cat", title: "Behavior Modification", desc: "Correcting aggression, anxiety & unwanted habits." },
-          { icon: "fa-solid fa-house", title: "Luxury Boarding", desc: "Climate-controlled suites, play yards & 24/7 care." },
-          { icon: "fa-solid fa-paw", title: "Puppy Program", desc: "Socialization & foundational skills for young dogs." }
-        ],
-        features: [
-          { icon: "fa-solid fa-certificate", title: "Certified Trainers", desc: "Accredited professionals with canine expertise." },
-          { icon: "fa-solid fa-clock", title: "24/7 Monitoring", desc: "Live cameras & overnight staff for safety." },
-          { icon: "fa-solid fa-leaf", title: "5-Acre Facility", desc: "Outdoor agility fields & nature trails." },
-          { icon: "fa-solid fa-hand-sparkles", title: "Spa & Grooming", desc: "Premium baths, brushing & nail care included." }
-        ]
-      };
-
-      // Load from localStorage or use defaults
-      let siteData = JSON.parse(localStorage.getItem('blackPradosContent')) || JSON.parse(JSON.stringify(defaultContent));
-
-      // Save helper
-      function persistData() {
-        localStorage.setItem('blackPradosContent', JSON.stringify(siteData));
-      }
-
-      // ----- Render functions -----
-      function renderServices() {
-        const container = document.getElementById('servicesContainer');
-        if (!container) return;
-        container.innerHTML = siteData.services.map(s => `
-          <div class="card">
-            <i class="${s.icon}"></i>
-            <h3>${s.title}</h3>
-            <p>${s.desc}</p>
-          </div>
-        `).join('');
-      }
-
-      function renderFeatures() {
-        const container = document.getElementById('featuresContainer');
-        if (!container) return;
-        container.innerHTML = siteData.features.map(f => `
-          <div class="card">
-            <i class="${f.icon}"></i>
-            <h3>${f.title}</h3>
-            <p>${f.desc}</p>
-          </div>
-        `).join('');
-      }
-
-      function renderAbout() {
-        document.getElementById('aboutTextContainer').innerHTML = `<p>${siteData.aboutText}</p>`;
-        document.getElementById('aboutImage').src = siteData.aboutImage;
-      }
-
-      function renderHero() {
-        const heroEl = document.getElementById('heroText');
-        if (heroEl) heroEl.textContent = siteData.heroText;
-      }
-
-      function refreshAllUI() {
-        renderHero();
-        renderServices();
-        renderFeatures();
-        renderAbout();
-      }
-
-      // ----- Admin panel logic -----
-      const adminPanel = document.getElementById('adminPanel');
-      const toggleAdminBtn = document.getElementById('toggleAdminBtn');
-      const closeAdminBtn = document.getElementById('closeAdminBtn');
-
-      function openAdmin() {
-        adminPanel.classList.add('active');
-        // populate fields with current data
-        document.getElementById('editHeroText').value = siteData.heroText;
-        document.getElementById('editAboutText').value = siteData.aboutText;
-        document.getElementById('editAboutImage').value = siteData.aboutImage;
-        document.getElementById('editService1').value = siteData.services[0]?.title || '';
-        // could add more fields, but demonstrates editing
-        toggleAdminBtn.style.display = 'none';
-      }
-
-      function closeAdmin() {
-        adminPanel.classList.remove('active');
-        toggleAdminBtn.style.display = 'inline-block';
-      }
-
-      toggleAdminBtn.addEventListener('click', openAdmin);
-      closeAdminBtn.addEventListener('click', closeAdmin);
-
-      // Apply content changes
-      document.getElementById('applyContentChanges').addEventListener('click', function() {
-        const newHero = document.getElementById('editHeroText').value.trim();
-        const newAbout = document.getElementById('editAboutText').value.trim();
-        const newAboutImg = document.getElementById('editAboutImage').value.trim();
-        const newService1Title = document.getElementById('editService1').value.trim();
-
-        if (newHero) siteData.heroText = newHero;
-        if (newAbout) siteData.aboutText = newAbout;
-        if (newAboutImg) siteData.aboutImage = newAboutImg;
-        if (newService1Title && siteData.services.length > 0) {
-          siteData.services[0].title = newService1Title;
-        }
-        persistData();
-        refreshAllUI();
-        alert('Website content updated successfully!');
-        closeAdmin(); // optional auto close
-      });
-
-      // ----- E-Bill & WhatsApp feature (no direct payment) -----
-      const generateBtn = document.getElementById('generateBillBtn');
-      const billPreviewDiv = document.getElementById('billPreview');
-      const billDetails = document.getElementById('billDetails');
-      const sendWhatsAppBtn = document.getElementById('sendWhatsAppBtn');
-      let currentBill = { name: '', service: '', amount: '' };
-
-      generateBtn.addEventListener('click', function() {
-        const name = document.getElementById('custName').value.trim();
-        const service = document.getElementById('custService').value.trim();
-        const amount = document.getElementById('custAmount').value.trim();
-        if (!name || !service || !amount) {
-          alert('Please fill all bill fields.');
-          return;
-        }
-        currentBill = { name, service, amount };
-        billDetails.innerHTML = `🧾 <strong>${name}</strong><br>📌 ${service}<br>💰 $${amount}`;
-        billPreviewDiv.style.display = 'block';
-      });
-
-      sendWhatsAppBtn.addEventListener('click', function() {
-        if (!currentBill.name || !currentBill.service || !currentBill.amount) {
-          alert('Generate a bill first.');
-          return;
-        }
-        const phone = "15551234567"; // placeholder; in real use, admin would input or use business number
-        const message = `Hello ${currentBill.name}, your invoice from BLACK PRADOS:\nService: ${currentBill.service}\nAmount: $${currentBill.amount}\nThank you! 🐾`;
-        const encoded = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/${phone}?text=${encoded}`;
-        window.open(whatsappUrl, '_blank');
-      });
-
-      // ----- Navigation tab switching (smooth) -----
-      const navLinks = document.querySelectorAll('.nav-links a[data-section]');
-      function setActiveLink(sectionId) {
-        navLinks.forEach(link => {
-          const dataSec = link.getAttribute('data-section');
-          if (dataSec === sectionId) link.classList.add('active');
-          else link.classList.remove('active');
-        });
-      }
-
-      navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const sectionId = this.getAttribute('data-section');
-          const target = document.getElementById(sectionId);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-            setActiveLink(sectionId);
-          }
-        });
-      });
-
-      // Observe scroll to update active tab (basic)
-      window.addEventListener('scroll', function() {
-        const sections = ['home','services','about','features'];
-        let current = 'home';
-        sections.forEach(id => {
-          const el = document.getElementById(id);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= 150 && rect.bottom >= 150) {
-              current = id;
-            }
-          }
-        });
-        setActiveLink(current);
-      });
-
-      // Initial render
-      refreshAllUI();
-
-      // Ensure admin button visible if panel closed programmatically
-      if (!adminPanel.classList.contains('active')) {
-        toggleAdminBtn.style.display = 'inline-block';
-      }
-
-      // Additional corner features: service editing could be extended, but admin panel covers content.
-      // Also ensure bill section resets appropriately.
-    })();
-  </script>
 </body>
 </html>
-```
